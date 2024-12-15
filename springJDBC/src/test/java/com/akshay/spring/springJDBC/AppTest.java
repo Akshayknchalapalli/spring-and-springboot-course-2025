@@ -1,4 +1,4 @@
-package com.akshay.setterinjection.myfirstproject;
+package com.akshay.spring.springJDBC;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
