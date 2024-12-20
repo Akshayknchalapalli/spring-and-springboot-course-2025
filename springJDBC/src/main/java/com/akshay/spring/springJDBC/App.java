@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.akshay.spring.springJDBC.business.EmployeeBusiness;
 import com.akshay.spring.springJDBC.business.EmployeeBusinessImpl;
+import com.akshay.spring.springJDBC.dto.Employee;
 
 /**
  * Hello world!
@@ -17,5 +18,8 @@ public class App
         ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
         EmployeeBusiness employeeBusiness  = (EmployeeBusinessImpl) context.getBean("employeeBusiness");
         employeeBusiness.printEmployeeHikes();
+        
+        Employee employee = new Employee(5 , "Anil" , 15);
+        employeeBusiness.insertEmployee(employee);
     }
 }

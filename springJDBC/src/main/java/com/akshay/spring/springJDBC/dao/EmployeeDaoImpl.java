@@ -8,52 +8,45 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.akshay.spring.springJDBC.dto.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDao {
+	
+	JdbcTemplate jdbcTemplate;
+	
+	
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public void insertEmployee(Employee employee) {
 		// code to insert employee object into database
+		
+//		String query = "INSERT INTO employees VALUES('" + employee.getId() + "', '" + employee.getName() + 
+//				"', " + employee.getExp() + ")";
+		
+		String query = "INSERT INTO employees VALUES(? , ? , ?)";
+
+		
+		System.out.println("Query: " + query);
+		
+		jdbcTemplate.update(query , employee.getId() , employee.getName() , employee.getExp());
 
 	}
 
 	@Override
 	public List<Employee> findAllEmployees() {
-		// code to return all employees into Employee Table
-		String url = "jdbc:postgresql://localhost:5432/my_database";
-        String username = "postgres";
-        String password = "Akshay@123";
-
-        // SQL SELECT query
-        String selectQuery = "SELECT * FROM employees";
+		
         
-        List<Employee> employees = new ArrayList<Employee>();
-        
-     try {
-		// Establish the connection
-		    Connection connection = DriverManager.getConnection(url, username, password);
-		    // Create a statement
-		    Statement statement = connection.createStatement();
-		    // Execute the query and get a result set
-		    ResultSet resultSet = statement.executeQuery(selectQuery);
-		    
-		    while(resultSet.next()) {
-		    	String id = resultSet.getString(1);
-		    	String name = resultSet.getString(2);
-		    	int exp = resultSet.getInt(3);
-		    	
-		    	Employee employee = new Employee(id, name, exp);
-		    	
-		    	employees.add(employee);
-		    }
-		    connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-		return employees;
+		return null;
 	}
 
 	@Override

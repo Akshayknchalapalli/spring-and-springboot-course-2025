@@ -9,13 +9,28 @@
            http://www.springframework.org/schema/context 
            http://www.springframework.org/schema/context/spring-context.xsd">
            
-           <bean name="employeeDao" class="com.akshay.spring.springJDBC.dao.EmployeeDaoImpl" />
+           <context:annotation-config />
            
-           <bean name="employeeBusiness" class="com.akshay.spring.springJDBC.business.EmployeeBusinessImpl">
-           	<property name="employeeDao">
-           		<ref bean="employeeDao"/>
-           	</property>
+           <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+           	<!-- <property name="driverClassName"></property> -->
+           	<property name="url" value="jdbc:postgresql://localhost:5432/my_database" />
+           	<property name="username" value="postgres"/>
+           	<property name="password" value="Akshay@123" />
            </bean>
+           
+           <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+           <property name="dataSource">
+           	<ref bean="dataSource"/>
+           </property>
+           </bean>
+           
+           <bean name="employeeDao" class="com.akshay.spring.springJDBC.dao.EmployeeDaoImpl">
+           <property name="jdbcTemplate">
+           	<ref bean="jdbcTemplate"/>
+           </property>
+           </bean>
+           
+           <bean name="employeeBusiness" class="com.akshay.spring.springJDBC.business.EmployeeBusinessImpl" />
           
                 	
            

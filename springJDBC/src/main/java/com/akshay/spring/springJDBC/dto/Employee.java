@@ -1,19 +1,19 @@
 package com.akshay.spring.springJDBC.dto;
 
 public class Employee {
-	String id;
+	int id;
 	String name;
 	int exp;
-	public Employee(String id, String name, int exp) {
+	public Employee(int id, String name, int exp) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.exp = exp;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {

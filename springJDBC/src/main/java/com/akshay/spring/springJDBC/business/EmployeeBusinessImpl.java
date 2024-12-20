@@ -2,11 +2,14 @@ package com.akshay.spring.springJDBC.business;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.akshay.spring.springJDBC.dao.EmployeeDao;
 import com.akshay.spring.springJDBC.dto.Employee;
 
 public class EmployeeBusinessImpl implements EmployeeBusiness {
 	
+	@Autowired
 	private EmployeeDao employeeDao;
 
 	public EmployeeDao getEmployeeDao() {
@@ -38,6 +41,10 @@ public class EmployeeBusinessImpl implements EmployeeBusiness {
 			}
 		}
 		
+	}
+	@Override
+	public void insertEmployee(Employee employee) {
+		employeeDao.insertEmployee(employee);
 	}
 
 }
