@@ -17,9 +17,12 @@ public class App
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
         EmployeeBusiness employeeBusiness  = (EmployeeBusinessImpl) context.getBean("employeeBusiness");
-        employeeBusiness.printEmployeeHikes();
+//        employeeBusiness.printEmployeeHikes();
         
-        Employee employee = new Employee(5 , "Anil" , 15);
-        employeeBusiness.insertEmployee(employee);
+//        Employee employee = new Employee(5 , "Anil" , 15);
+//        employeeBusiness.insertEmployee(employee);
+        
+        Employee employee = employeeBusiness.getEmployeeById(3);
+        System.out.println(employee.toString());
     }
 }

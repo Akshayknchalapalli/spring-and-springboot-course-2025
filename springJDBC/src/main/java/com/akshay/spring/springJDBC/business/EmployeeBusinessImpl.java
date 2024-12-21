@@ -3,10 +3,12 @@ package com.akshay.spring.springJDBC.business;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.akshay.spring.springJDBC.dao.EmployeeDao;
 import com.akshay.spring.springJDBC.dto.Employee;
 
+@Component("employeeBusiness")
 public class EmployeeBusinessImpl implements EmployeeBusiness {
 	
 	@Autowired
@@ -45,6 +47,11 @@ public class EmployeeBusinessImpl implements EmployeeBusiness {
 	@Override
 	public void insertEmployee(Employee employee) {
 		employeeDao.insertEmployee(employee);
+	}
+	@Override
+	public Employee getEmployeeById(int id) {
+		return employeeDao.getEmployeeById(id);
+		
 	}
 
 }
